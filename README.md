@@ -16,4 +16,5 @@ ref: https://www.theodinproject.com/lessons/foundations-calculator
     - create functions for add, subtract, multiply, divide
     - create variables for first number, second number, operator
     - create a function called 'operate' that takes two numbers and an operator, and calls one of the above functions on the numbers 
+    - create a function that populates the display when buttons are clicked
 4. Make it look nice
