@@ -1,38 +1,38 @@
-let firstNum = 1;
-let secondNum = 2;
-let operator = 'a';
+let num1 = 1;
+let num2 = 2;
+let opt = 'a';
 
-function add(firstNum, secondNum) {
-    return firstNum + secondNum; 
+function add(num1, num2) {
+    return num1 + num2; 
 }
 
-function subtract(firstNum, secondNum) {
-    return firstNum - secondNum;
+function subtract(num1, num2) {
+    return num1 - num2;
 }
 
-function multiply(firstNum, secondNum) {
-    return firstNum * secondNum;
+function multiply(num1, num2) {
+    return num1 * num2;
 }
 
-function divide(firstNum, secondNum) {
-    return firstNum / secondNum;
+function divide(num1, num2) {
+    return num1 / num2;
 }
 
-function operate(operator, firstNum, secondNum) {
+function operate(opt, num1, num2) {
     let result;
-    if (operator === 'a') {
-        result = add(firstNum, secondNum);
-    } else if (operator === 's') {
-        result = subtract(firstNum, secondNum);
-    } else if (operator === 'm') {
-        result = multiply(firstNum, secondNum);
-    } else if (operator === 'd') {
-        result = divide(firstNum, secondNum);
+    if (opt === 'a') {
+        result = add(num1, num2);
+    } else if (opt === 's') {
+        result = subtract(num1, num2);
+    } else if (opt === 'm') {
+        result = multiply(num1, num2);
+    } else if (opt === 'd') {
+        result = divide(num1, num2);
     } else {
         console.log('ERROR')
     }
     return result;
 }
 
-const result = operate(operator, firstNum, secondNum);
+const result = operate(opt, num1, num2);
 console.log(result);
