@@ -69,6 +69,7 @@ body {
     border: 1px;
     color: black;
     text-align: center;
+    display:flex;
     justify-content: center;
     align-items: center;
 }
@@ -81,6 +82,7 @@ body {
     border: 1px;
     color: black;
     text-align: center;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -106,6 +108,7 @@ button {
     border: 1px;
     color: black;
     text-align: center;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
