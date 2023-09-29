@@ -69,6 +69,8 @@ body {
     border: 1px;
     color: black;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 #delete {
@@ -79,6 +81,8 @@ body {
     border: 1px;
     color: black;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .nums-ops {
@@ -102,6 +106,8 @@ button {
     border: 1px;
     color: black;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 #footer {
