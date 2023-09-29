@@ -13,8 +13,10 @@ ref: https://www.theodinproject.com/lessons/foundations-calculator
     - copyright footer
 2. Structure the HTML 
 3. Make it work
-    - create functions for add, subtract, multiply, divide
-    - create variables for first number, second number, operator
-    - create a function called 'operate' that takes two numbers and an operator, and calls one of the above functions on the numbers 
-    - create a function that populates the display when buttons are clicked
+    - create variables for the first number, the second number, operator, and result
+    - create functions to add, subtract, multiply, divide numbers
+    - create a function to calculate the numbers and give result
+    - create a function to update the display
+    - wire HTML with JS
+    - create eventlisteners for all the buttons
 4. Make it look nice
