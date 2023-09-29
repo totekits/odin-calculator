@@ -1,122 +1,165 @@
 const display = document.getElementById('display');
-const numberButtons = document.querySelectorAll('.numbers');
+const divideButton = document.getElementById('divide-button');
+const multiplyButton = document.getElementById('multiply-button');
+const addButton = document.getElementById('add-button');
+const subtractButton = document.getElementById('subtract-button');
 const operatorButtons = document.querySelectorAll('.operators');
-const equalButton = document.getElementById('equal');
+const numberButtons = document.querySelectorAll('.numbers');
+const equalsButton = document.getElementById('equals');
 const clearButton = document.getElementById('clear');
 const deleteButton = document.getElementById('delete');
 const periodButton = document.getElementById('period');
 
-let num1 = '';
-let num2 = '';
-let opt = '';
-let currentInput = 'num1';
+let a = '';
+let b = '';
+let o = '';
 let result = '';
 
-function add(num1, num2) {
-    return num1 + num2; 
+function add(a, b) {
+    return a + b; 
 }
 
-function subtract(num1, num2) {
-    return num1 - num2;
+function subtract(a, b) {
+    return a - b;
 }
 
-function multiply(num1, num2) {
-    return num1 * num2;
+function multiply(a, b) {
+    return a * b;
 }
 
-function divide(num1, num2) {
-    return num1 / num2;
-}
-
-function operate(opt, num1, num2) {
-    switch (opt) {
-        case '+':
-            return add(num1, num2);
-        case '-':
-            return subtract(num1, num2);
-        case 'x':
-            return multiply(num1, num2);
-        case '÷':
-            if (num2 !== 0) {
-                return divide(num1, num2);
-            } else {
-                return 'ERROR'
-            } 
-        default:
-            return '';
+function divide(a, b) {
+    if (b !== 0) {
+        return a / b;
+    } else {
+        alert("Number can't be divided by 0")
+        return 'ERROR'
     }
 }
 
+function operate() {
+    if (o === '+') {
+        result = add(parseFloat(a), parseFloat(b));
+    } else if (o === '-') {
+        result = subtract(parseFloat(a), parseFloat(b));
+    } else if (o === '*') {
+        result = multiply(parseFloat(a), parseFloat(b)); 
+    } else if (o === '/') {
+        result = divide(parseFloat(a), parseFloat(b));
+    }
+    result = parseFloat(result.toFixed(3));
+}
+
 function updateDisplay() {
-    display.textContent = num1 + opt + num2;
+    if (a === '' && o === '' && b === '' && result === '') {
+        display.textContent = '';
+    } else if (a !== '' && o === '' && b === '' && result === '') {
+        display.textContent = a;
+    } else if (a !== '' && o !== '' && b === '' && result === '') {
+        display.textContent = a + o;
+    } else if (a !== '' && o !== '' && b !== '' && result === '') {
+        display.textContent = a + o + b;
+    } else if (a !== '' && o !== '' && b !== '' && result !== '') {
+        a = result;
+        result = '';
+        b = '';
+        display.textContent = a + o;
+    } else if (a !== '' && o === '' && b !== '' && result !== '') {
+        a = result;
+        result = '';
+        b = '';
+        display.textContent = a;
+    }
 }
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const numberText = button.textContent;
-        if (currentInput === 'num1') {
-            num1 += numberText;
-        } else {
-            num2 += numberText;
-        }
+        if (o === '') {
+            a += numberText;
+        } else if (o !== '') {
+            b += numberText;
+        }  
         updateDisplay();
     });
 });
 
-operatorButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        const operatorText = button.textContent;
-        if (currentInput === 'num1' && num1 !== '') {
-            if (num2 !== '' && opt !== '') {
-                result = operate(opt, parseFloat(num1), parseFloat(num2)).toString();
-                num1 = result;
-                num2 = '';
-            }
-            opt = operatorText;
-            currentInput = 'num2';
-            updateDisplay();
-        }
-    });
+divideButton.addEventListener('click', () => {
+    if (a !== '' && o === '' && b === '') {
+        o = '/';
+    } else if (a !== '' && o !== '' && b !== '') {
+        operate();
+        o = '/';
+    }
+    updateDisplay();
 });
 
-equalButton.addEventListener('click', () => {
-    if (num1 !== '' && num2 !== '' && opt !== '') {
-        result = operate(opt, parseFloat(num1), parseFloat(num2));
-        display.textContent = result;
-        num1 = result
-        num2 = '';
-        opt = '';
-        currentInput = 'num1';
+multiplyButton.addEventListener('click', () => {
+    if (a !== '' && o === '' && b === '') {
+        o = '*';
+    } else if (a !== '' && o !== '' && b !== '') {
+        operate();
+        o = '*';
     }
-});
+    updateDisplay();
+})
+
+addButton.addEventListener('click', () => {
+    if (a !== '' && o === '' && b === '') {
+        o = '+';
+    } else if (a !== '' && o !== '' && b !== '') {
+        operate();
+        o = '+'
+    }
+    updateDisplay();
+})
+
+subtractButton.addEventListener('click', () => {
+    if (a === '' && o ==='' && b === '') {
+        a = '-';
+    } else if (a !== '' && o === '' && b === '') {
+        o = '-';
+    } else if (a !== '' && o !== '' && b !== '') {
+        operate(); 
+        o = '-';
+    }
+    updateDisplay();
+})
 
 clearButton.addEventListener('click', () => {
-    num1 = '';
-    num2 = '';
-    opt = '';
-    currentInput = 'num1';
-    display.textContent = '';
+    a = '';
+    b = '';
+    o = '';
+    result = '';
+    updateDisplay();
 });
 
 deleteButton.addEventListener('click', () => {
-    if (currentInput === 'num1') {
-        num1 = num1.slice(0, -1);
-    } else {
-        num2 = num2.slice(0, -1);
+    if (a !== '' && o === '' && b === '') {
+        a = a.slice(0, -1);
+    } else if (a !== '' && o !== '' && b === '') {
+        o = '';
+    } else if (a !== '' && o !== '' & b !== '') {
+        b = b.slice(0, -1);
     }
     updateDisplay();
 });
 
+equalsButton.addEventListener('click', () => {
+    if (a !== '' && o !== '' && b !== '') {
+        operate();
+        o = '';
+        updateDisplay();
+    }
+});
+
 periodButton.addEventListener('click', () => {
-    if (currentInput === 'num1') {
-        if (!num1.includes('.')) {
-            num1 += '.';
-        }
-    } else {
-        if (!num2.includes('.')) {
-            num2 += '.';
-        }
+    if (a === '' && o === '' && b === '') {
+        a += '.';
+    } else if ((a !== '' && !a.includes('.')) && o === '' && b === '') {
+        a += '.';
+    } else if (a !== '' && o !== '' && (b !== '' && !b.includes('.'))) {
+        b += '.';
     }
     updateDisplay();
-});
+});    
 
