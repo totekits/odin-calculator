@@ -20,3 +20,4 @@ ref: https://www.theodinproject.com/lessons/foundations-calculator
     - wire HTML with JS
     - create eventlisteners for all the buttons
 4. Make it look nice
+view it here: https://totekits.github.io/odin-calculator/
